@@ -1,6 +1,9 @@
 <?php
 $con=mysqli_connect("localhost","root","","laptofy");
 if($con){
-    echo "<script>alert('connection successfully');</script>";
+    echo "connection successful";
+}
+else{
+    die("connection failed".mysqli_connect_error());
 }
 ?>
