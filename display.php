@@ -17,6 +17,8 @@ $qry=mysqli_query($con,"SELECT * FROM laptofy") or die("query error");
             <th>image</th>
             <th>price</th>
             <th>status</th>
+            <th>delete</th>
+            <th>update</th>
             
         </tr>
         <?php
@@ -29,11 +31,17 @@ $qry=mysqli_query($con,"SELECT * FROM laptofy") or die("query error");
             <td><img src="<?php echo $data["img"]; ?>" height="100px" width="100px"></td>
             <td><?php echo $data["price"]; ?></td>
             <td><?php echo $data["status"]; ?></td>
+            <td><a href="delete.php?id=<?php echo $data["id"]; ?>">delete</a></td>
+            <td><a href="update.php?id=<?php echo $data["id"]; ?>">update</a></td>
             
         </tr>
         <?php
         }
         ?>
+        <tr>
+            <td colspan="8" align="center" class="btn-center">
+                <a href="laptofy.php"><button>insert new record</button></a>
+            </td>
     </table>
 </body>
 </html>
