@@ -1,30 +1,50 @@
 <?php
 include "connection.php";
 error_reporting(0);
-if(isset($_POST["insert"]))
-{
-    $id=$_POST["id"];
-    $name=$_POST["name"];
-    $description=$_POST["description"];
-    $img=$_FILES["img"]["name"];
-    $price=$_POST["price"];
-    $status=$_POST["status"];
-    $folder="img/".$img;
-    move_uploaded_file($_FILES["img"]["tmp_name"],$folder);
-    $qry=mysqli_query($con,"SELECT * FROM laptofy WHERE id='$id'") or die("query error");
 
-    if(mysqli_num_rows($qry)>0){
-        echo "<script>alert('id already exist');</script>";
-    }else{
-        $qry=mysqli_query($con,"INSERT INTO `laptofy` (`id`, `name`, `description`, `img`, `price`, `status`) VALUES ('$id', '$name', '$description', '$folder', '$price', '$status');")or die ("query error");
-        if($qry){
-            echo "<script>alert('record inserted successfully');</script>";
-            header("location:display.php");
+if (isset($_POST["insert"])) {
+
+    $id = $_POST["id"];
+    $name = $_POST["name"];
+    $description = $_POST["description"];
+    $price = $_POST["price"];
+    $status = $_POST["status"];
+
+    $imageArray = [];
+
+    foreach ($_FILES["img"]["name"] as $key => $imageName) {
+        $tmpName = $_FILES["img"]["tmp_name"][$key];
+
+        if (!empty($imageName)) {
+            move_uploaded_file($tmpName, "img/" . $imageName);
+            $imageArray[] = $imageName;
+        }
+    }
+
+    $folder = implode(",", $imageArray);
+
+    $check = mysqli_query($con, "SELECT id FROM laptofy WHERE id='$id'");
+
+    if (mysqli_num_rows($check) > 0) {
+        echo "<script>alert('ID already exists');</script>";
+    } else {
+
+        $qry = mysqli_query(
+            $con,
+            "INSERT INTO laptofy (id, name, description, img, price, status)
+             VALUES ('$id','$name','$description','$folder','$price','$status')"
+        );
+
+        if ($qry) {
+            header("Location: display.php");
+            exit;
         }
     }
 }
-if(isset($_POST["display"])){
-    header("location:display.php");
+
+if (isset($_POST["display"])) {
+    header("Location: display.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -55,7 +75,7 @@ if(isset($_POST["display"])){
 </tr>
 <tr>
     <td>select image</td>
-    <td><input type="file" name="img" required></td>
+    <td><input type="file" name="img[]" multiple required ></td>
 </tr>
 <tr>
     <td>enetr price</td>
