@@ -71,7 +71,7 @@ if(isset($_POST["display"])){
 <tr>
     <td colspan="2" class="btn-center">
         <input type="submit" name="insert" value="insert">
-        <input type="submit" name="display" value="display" formnovalidate>
+        <input type="submit" name="display" value="view list" formnovalidate>
 </td>
 </tr>
 </table>
