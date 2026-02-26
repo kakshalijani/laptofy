@@ -1,6 +1,5 @@
 <?php
 include "connection.php";
-
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $qry = mysqli_query($con, "SELECT * FROM laptofy WHERE id='$id'");
@@ -25,10 +24,7 @@ if (isset($_GET["id"])) {
 <body>
 
 <table border="1" align="center">
-    <tr>
-        <th>ID</th>
-        <td><?php echo $data["id"]; ?></td>
-    </tr>
+   <tr><th colspan="2" align="center">PRODUCT DETAILS</th></tr>
     <tr>
         <th>Name</th>
         <td><?php echo $data["name"]; ?></td>

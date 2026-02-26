@@ -62,10 +62,6 @@ if (isset($_POST["display"])) {
 </td>
 </tr>
 <tr>
-    <td>enter Id</td>
-    <td><input type="number"  name="id" required></td>
-</tr>
-<tr>
     <td>enter name</td>
     <td><input type="text" name="name" required></td>
 </tr>

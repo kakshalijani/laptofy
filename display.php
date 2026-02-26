@@ -13,7 +13,6 @@ $qry = mysqli_query($con,"SELECT * FROM laptofy WHERE status='active'")
 
 <table border="1" align="center">
     <tr>
-        <th>ID</th>
         <th>Name</th>
         <th>Description</th>
         <th>Images</th>
@@ -26,7 +25,7 @@ $qry = mysqli_query($con,"SELECT * FROM laptofy WHERE status='active'")
 
 <?php while ($data = mysqli_fetch_array($qry)) { ?>
     <tr>
-        <td><?php echo $data["id"]; ?></td>
+        
         <td><?php echo $data["name"]; ?></td>
         <td><?php echo $data["description"]; ?></td>
 

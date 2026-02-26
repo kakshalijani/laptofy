@@ -81,12 +81,9 @@ if (isset($_POST['update'])) {
 <table border="1" align="center">
 
 <tr><th colspan="2">UPDATE PRODUCT</th></tr>
-
 <tr>
-<td>ID</td>
-<td><input type="text" name="id" value="<?= $data['id'] ?>" readonly></td>
-</tr>
-
+    <td>ID</td>
+    <td><input type="hidden" name="id" value="<?= $data['id'] ?>"></td>
 <tr>
 <td>Name</td>
 <td><input type="text" name="name" value="<?= $data['name'] ?>"></td>
